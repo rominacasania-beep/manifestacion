@@ -145,8 +145,8 @@
     els.forEach(function (e, i) { if (i > 0) { e.classList.add('mg-rev'); io.observe(e); } });
   }
   function anchor() {
-    var all = document.querySelectorAll('main h1,main h2,main h3,main p,main span,main div');
-    for (var i = 0; i < all.length; i++) { if (/CUATRO PILARES/i.test(all[i].textContent) && all[i].children.length < 3) return all[i].closest('section') || all[i].parentElement; }
+    var w = document.createTreeWalker(document.querySelector('main') || document.body, NodeFilter.SHOW_TEXT), n;
+    while ((n = w.nextNode())) { if (/CUATRO PILARES/i.test(n.textContent)) return n.parentElement.closest('section'); }
     return null;
   }
   function mount() {
